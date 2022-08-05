@@ -1,3 +1,4 @@
 # Water puzzle solver
-##A console program written in C that generates and solves the water bottle puzzle using a game tree. 
-[[/images/game.png]]
+##A console program written in C that generates and solves the water bottle puzzle using a game tree.
+
+[[/images/game.png | Game image]]
