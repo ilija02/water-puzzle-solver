@@ -639,14 +639,14 @@ void playAgain(int* selectedOption) {
 }
 
 void playGame() {
-	int n = -1, k = -1, p = -1, selectedOption, gameInitialized = 0, movesLeft; //n bocica koje sadrze odredjenu kolicinu tecnosti, k bocica prazno, broj dostupnih boja je n-k, p - maksimalni broj koraka
+	int n = -1, k = -1, p = -1, selectedOption, gameInitialized = 0, movesLeft; 
 	int nrSolvingSteps = -1;
 	gameState game;
 	Tree gameTree = { 0 };
 	winState wState = GAME_NOT_FINISHED;
 	Node* currentState = NULL;
-	int* solutionSteps = NULL; // i-ta vrednost je iz_bocice, i+1 vrednost je u_bocicu
-	while (!initLFGstate());//inicijalizuj PRNG
+	int* solutionSteps = NULL; // i-th is from bottle, i+1 th is to bottle
+	while (!initLFGstate());//init PRNG
 	selectedOption = getSelectedMenuOption();
 	while (selectedOption) {
 		switch (selectedOption) {
@@ -674,7 +674,7 @@ void playGame() {
 				printf("Generated game isn't solveable in the given number of steps\n");
 				gameInitialized = 0;
 				freeSubtree(gameTree.root);
-				continue; //opet generisi igru
+				continue; //generate game again
 			}
 			movesLeft = p;
 			printGameState(game, n);
@@ -697,7 +697,7 @@ void playGame() {
 					continue;
 				}
 				else {
-					//Ovo radimo jer ne generisemo podstabla za ove slucajeve
+					//Dont generate subtrees
 					if (bottleHasSameColors((currentState->state).bottles[x])) {
 						printf("Bottle is already solved\n", x);
 						break;
